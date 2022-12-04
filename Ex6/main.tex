@@ -1,0 +1,73 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[a4paper]{geometry}
+
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{libertine}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{multicol}
+
+\usepackage[
+    colorlinks=true,
+    allcolors=black,
+    urlcolor=blue,
+]{hyperref}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{}
+\renewcommand{\thesubsubsection}{}
+\renewcommand{\theparagraph}{}
+
+\begin{document}
+Пусть \({ x > 2 }\).
+Тогда
+\begin{multline*}
+    \int_{1}^{x} \left[ xf'(x) + f(x-1) \right]\: dx = \cdots = xf(x) - \int_{x-1}^{x} f(x) = 0 \\
+    \implies \int_{x-1}^{x} f(x) = xf(x)\,.
+\end{multline*}
+Отсюда по первой теореме о среднем интегрального исчисления
+\[
+    xf(x) = \int_{x-1}^{x} f = f(c_x), \quad \text{где } x - 1 < c_x < x\,.
+\]
+Выберем теперь \({ x_1 = c_x }\) и \({ x_i = c_{x_{i-1}}}\) для \({ i > 1 }\).
+Допустим, что все \({ x_i > 2 }\). Тогда для любого \({ k }\)
+\begin{align*}
+    \left\lvert f(x_k) \right\rvert &= x_{k-1}\left\lvert f(x_{k-1}) \right\rvert = x_{k-1}x_{k-2}\left\lvert f(x_{k-3}) \right\rvert = \cdots \\
+    &= x_{k-1}x_{k-2} \cdots x_{1} \cdot xf(x) > 2^{k} \left\lvert f(x) \right\rvert\,.
+\end{align*}
+Но тогда в силу монотонности \({ \left\{ x_k \right\} }\)
+\[
+    \left\lvert f\left(\inf \left\{ x_k \right\}\right) \right\rvert = \left\lvert f\left(\lim_{k \to \infty} x_k\right) \right\rvert = \lim_{k \to \infty} \left\lvert f(x_k) \right\rvert > \lim 2^{k}\left\lvert f(x) \right\rvert
+    = +\infty\,,
+\]
+что невозможно в силу непрерывности \({ f }\). Значит, через конечное число шагов мы получим \({ x_n \leqslant 2 }\) (при этом для \({ i < n }\) имеем \({ x_i > 2 }\).) В силу предыдущей оценки и ограниченности \({ f }\) на \({ [0, 2] }\) имеем
+\[
+    2^{n}\left\lvert f(x) \right\rvert < \left\lvert f(x_n) \right\rvert < M, \quad \text{где } M \coloneqq \max_{x \in [0, 2]} \left\lvert f(x) \right\rvert < +\infty\,.
+\]
+Не трудно так же заметить, что \({ n \geqslant x - 2 }\), поскольку \({ \Delta x_i < 1 }\). Отсюда
+\[
+    \left\lvert f(x) \right\rvert < \frac{M}{2^{x-2}} \underset{x \to \infty}{\mapsto} 0\,.
+\]
+Значит по теореме о сжатой функции \({ \lim_{x \to \infty} f(x) = 0 }\).
+
+Аналогично, имея \({ x_n < 2 }\), получаем оценку
+\[
+    \begin{gathered}
+        \left\lvert f(x_n) \right\rvert = x_{n-1}x_{n-2} \cdots x_{1} \cdot xf(x) > \left(\left\lfloor x \right\rfloor! \right) \cdot f(x)\,, \\
+        f(x) < \frac{M}{\left\lfloor x \right\rfloor!}\,,
+    \end{gathered}
+\]
+из которой находится радиус \({ R }\) сходимости ряда \({ \sum f(n) x^{n} }\), поскольку
+\[
+    \limsup_{n \to \infty} \sqrt[n]{\left\lvert f(n) \right\rvert} \leqslant \limsup_{n \to \infty} \sqrt[n]{\frac{M}{n!}} = 0 \implies R = +\infty\,.
+\]
+
+
+\end{document}
